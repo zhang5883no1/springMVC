@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.base.crm.dto.CRM_INFO_DTO;
 import cn.base.crm.webservice.WebServiceSoap_WebServiceSoap_Client;
+import cn.base.util.HttpUtil;
 import cn.base.util.IPUtil;
+import cn.base.util.PropertiesConfig;
 import cn.base.util.ValidateUtil;
 import cn.entity.guanwang.GW_DEDE_MEMBERWithBLOBs;
 import cn.entity.local.CRM_Entity2;
@@ -160,6 +163,14 @@ public class RegController {
 		String times=new Date().getTime()+"";
 		session.setAttribute("flag", times);
 		ob.accumulate("times", times);
+		
+		//crm
+		if("1".equals(ob.getString("code"))){
+			CRM_INFO_DTO dto=new CRM_INFO_DTO(record);
+			dto.setSource(code);
+			dto.setQq(new IPUtil().getRemortIP(request));
+			WebServiceSoap_WebServiceSoap_Client.client(dto.getNewCrmJsonString());
+		}
 		
 		//返回数据
 		String responseText=ob.toString();

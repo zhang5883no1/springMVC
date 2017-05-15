@@ -10,6 +10,7 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.base.redis.RedisUtil;
 import cn.base.util.SMSUtil;
 import cn.base.util.ValidateUtil;
 import cn.dao.guanwang.GW_DEDE_MEMBERMapper;
@@ -232,26 +233,32 @@ public class GW_Reg_ServiceImpl implements GW_Reg_Service{
 		JSONObject json=new JSONObject();
 		// TODO Auto-generated method stub  
 		//验证手机格式，手机不为空，姓名不为空
-		if(ValidateUtil.isMobile(record.getUserid())&&ValidateUtil.isEmpty(record.getUserid())&&ValidateUtil.isEmpty(record.getUname())){
-			
-		}else{
-			json.accumulate("code", "0");
-			return json;
+//		if(ValidateUtil.isMobile(record.getUserid())&&ValidateUtil.isEmpty(record.getUserid())&&ValidateUtil.isEmpty(record.getUname())){
+//			
+//		}else{
+//			json.accumulate("code", "0");
+//			return json;
+//		}
+//		
+//		//验证验证码
+//		if(validCode(record.getUserid(),code)){
+//			try {
+//				int result=gw_memberDao.insertSelective(record);
+//				json.accumulate("code", result+"");
+//			} catch (Exception e) {
+//				// TODO: handle exception
+//				json.accumulate("code", "9");
+//			}
+//		}else{
+//			json.accumulate("code", "2");
+//		}
+		try {
+			int result=gw_memberDao.insertSelective(record);
+			json.accumulate("code", result+"");
+		} catch (Exception e) {
+			// TODO: handle exception
+			json.accumulate("code","");
 		}
-		
-		//验证验证码
-		if(validCode(record.getUserid(),code)){
-			try {
-				int result=gw_memberDao.insertSelective(record);
-				json.accumulate("code", result+"");
-			} catch (Exception e) {
-				// TODO: handle exception
-				json.accumulate("code", "9");
-			}
-		}else{
-			json.accumulate("code", "2");
-		}
-		
 		return json;
 	}
 
@@ -274,6 +281,10 @@ public class GW_Reg_ServiceImpl implements GW_Reg_Service{
 		}else{
 			return false;
 		}
+	}
+	
+	private void validMobileCode(String mobile){
+		
 	}
 	
 }

@@ -63,4 +63,8 @@ public class MD5Util {
 		String orignKey=MD5Encode(date+mob);
 		return orignKey.equals(key);
 	}
+	
+	public static void main(String[] args) {
+		System.out.println(MD5Util.MD5Encode(MD5Util.MD5Encode("123456")));
+	}
 }

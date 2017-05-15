@@ -394,4 +394,53 @@ public class RedisUtil {
         }
 	}
 	
+	public static void setExpire(String key,int expTimes){
+		Jedis jedis=null;
+    	try {
+    		jedis=getJedis();
+    		jedis.expire(key, expTimes);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+        	returnResource(jedis);
+        }
+	}
+	
+	public static void hashSet(String key,String name,String value){
+		Jedis jedis=null;
+    	try {
+    		jedis=getJedis();
+    		jedis.hset(key, name,value);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+        	returnResource(jedis);
+        }
+	}
+	
+	public static void hashAdd(String key,String name,long value){
+		Jedis jedis=null;
+    	try {
+    		jedis=getJedis();
+    		jedis.hincrBy(key, name,value);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+        	returnResource(jedis);
+        }
+	}
+	
+	public static String hashGet(String key,String name){
+		Jedis jedis=null;
+		String hv="";
+    	try {
+    		jedis=getJedis();
+    		hv=jedis.hget(key, name);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+        	returnResource(jedis);
+        }
+    	return hv;
+	}
 }

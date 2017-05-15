@@ -36,9 +36,11 @@ public final class WebServiceSoap_WebServiceSoap_Client {
     	 URL wsdlURL = WebService.WSDL_LOCATION;
          WebService ss = new WebService(wsdlURL, SERVICE_NAME);
          WebServiceSoap port = ss.getWebServiceSoap();  
-         AppendFile.write(date.getDate()+".txt","D:\\"+date.getYear()+"\\"+date.getMonth(), "send info : "+s+"\r\n");
+         System.out.println("send info : "+s);
+//         AppendFile.write(date.getDate()+".txt","D:\\"+date.getYear()+"\\"+date.getMonth(), "send info : "+s+"\r\n");
          java.lang.String _setData__return = port.setData(s);
-         AppendFile.write(date.getDate()+".txt","D:\\"+date.getYear()+"\\"+date.getMonth(), "get info : "+_setData__return+"\r\n");
+         System.out.println("get info : "+_setData__return);
+//         AppendFile.write(date.getDate()+".txt","D:\\"+date.getYear()+"\\"+date.getMonth(), "get info : "+_setData__return+"\r\n");
          return _setData__return;
     }
     

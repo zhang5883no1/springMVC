@@ -20,8 +20,15 @@ public class CRM_INFO_DTO {
 	private String name;
 	private String source;
 	private String key;
+	private String qq;
 	
 	
+	public String getQq() {
+		return qq;
+	}
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
 	public String getKey() {
 		return key;
 	}
@@ -73,7 +80,7 @@ public class CRM_INFO_DTO {
 			       + "\"r_url\":\""+this.linksource+"\",\"WorkingState\":\"120\",\"WorkingStateName\":\"\",\"PhoneState\":\"80\",\"PhoneStateName\":\"\","
 			       + "\"Source\":\""+this.source+"\",\"SourcesName\":\"\",\"ResourcesState\":\"160\",\"ResourcesStateName\":\"\",\"SystemName\":\"\","
 			       + "\"SystemGuid\":\"\",\"FenPeiNumber\":0,\"IsKaiHu\":\"\",\"Check\":false,\"Phone1\":\""+this.phone+"\","
-			       + "\"Phone2\":\"\",\"QQ\":\"\",\"Remark\":\"gasdg\",\"Phone3\":\"\",\"Address\":\"asdfasdfasd\",\"OrgID\":\"A3A1\","
+			       + "\"Phone2\":\"\",\"QQ\":\""+this.qq+"\",\"Remark\":\"gasdg\",\"Phone3\":\"\",\"Address\":\"asdfasdfasd\",\"OrgID\":\"A3A1\","
 			       + "\"EmplGuid\":\"\",\"Sex\":\"\",\"Dell\":false,\"CreateDate\":\""+d+".8610143+08:00"+"\","
 			       + "\"FenPeiDate\":\"1900-01-01T00:00:00\",\"CusID\":\"\",\"CusName\":\""+this.name+"\",\"Keys\":\""+this.key+"\"}";
 		return str_json;
@@ -92,8 +99,11 @@ public class CRM_INFO_DTO {
 		this.name=entity.getUname();
 		this.phone=entity.getUserid()+"";
 		this.referer=entity.getReferer();
-		this.source=CRM_URL_TRANSLATE_Service.translateSource(this.linksource);
-		this.key=CRM_URL_TRANSLATE_Service.translateUrl(this.linksource);
+//		this.source=CRM_URL_TRANSLATE_Service.translateSource(this.linksource);
+		this.source="160";
+//		this.key=CRM_URL_TRANSLATE_Service.translateUrl(this.linksource);
+		this.key="";
+		this.qq="";
 	}
 	
 	public CRM_INFO_DTO(OPENDOORWithBLOBs entity){

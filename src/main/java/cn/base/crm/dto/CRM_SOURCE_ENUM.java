@@ -1,5 +1,9 @@
-package cn.base.crm.dto;  
-  
+package cn.base.crm.dto;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /** 
 * @ClassName: CRM_SOURCE_ENUM 
 * @Description: CRM数据来源枚举类
@@ -78,4 +82,8 @@ public enum CRM_SOURCE_ENUM {
 		return index;
 	}
     
+	public static void main(String[] args) throws ParseException {
+		SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		System.out.println(sf.parse("2017-04-01 00:00:00").getTime()/1000);
+	}
 }
